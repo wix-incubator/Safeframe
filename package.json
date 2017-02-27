@@ -1,0 +1,46 @@
+{
+  "name": "deviantart-safeframe",
+  "private": true,
+  "version": "0.1.0",
+  "description": "DeviantArt's implementation of the IAB SafeFrame standard",
+  "scripts": {
+    "genkey": "node bin/generate-key.js",
+    "clean": "rimraf dist/*",
+    "prebuild": "npm run clean -s",
+    "build": "npm run build:prod",
+    "build:dev": "webpack -d --config webpack.config.dev.js",
+    "build:prod": "webpack -p --config webpack.config.prod.js",
+    "serve": "http-server -p 9090 .",
+    "open:demo": "open http://localhost:9090/demos/visibility.html",
+    "dev": "npm run open:demo & parallelshell 'npm run build:dev -s' 'npm run serve -s'",
+    "deploy": "node bin/deploy.js",
+    "version": "npm run build && git add -u",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": "https://github.com/DeviantArt/SafeFrame",
+  "keywords": [
+    "DeviantArt",
+    "IAB",
+    "ads",
+    "SafeFrame",
+    "iframe",
+    "javascript"
+  ],
+  "author": "Djordje Ungar",
+  "license": "LicenseRef-LICENSE",
+  "dependencies": {
+    "balalaika": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.1",
+    "babel-preset-es2015": "^6.22.0",
+    "http-server": "^0.9.0",
+    "open": "0.0.5",
+    "parallelshell": "^2.0.0",
+    "preprocess-loader": "^0.2.0",
+    "randomstring": "^1.1.5",
+    "rimraf": "latest",
+    "webpack": "^2.2.1"
+  }
+}

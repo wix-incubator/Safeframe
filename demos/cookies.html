@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>DeviantArt SafeFrames Demo</title>
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type='text/javascript' src='../dist/deviantart-safeframes-host.js'></script>
+        <script type='text/javascript'>
+        var d = new DeviantArtSafeFramesHost({
+            "read-cookie": true,
+            "write-cookie": true
+        });
+        </script>
+    </head>
+    <body>
+        <header>
+            <a href="http://deviantart.com">
+            <span id="deviantart-logo">
+                <span class="mark"></span>
+                <span class="type"></span>
+            </span>
+            </a>
+        </header>
+        <main>
+        <div class="page">
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
+
+            <div class="dark thumb"><div class="expandable ad">
+                <iframe src='iframes/cookie.html' name='atf-300x250#{"conf":{"write-cookie":true, "read-cookie":true}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+            </div></div>
+
+            <div class="dark thumb thumb-narrow"></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb thumb-narrow"></div>
+            <div class="dark thumb"></div>
+
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
+
+        </div>
+        </main>
+    </body>
+</html>
+

@@ -1,0 +1,90 @@
+html, body {
+    background: #d4dfd0;
+    width: 100%;
+    min-height: 100%;
+    padding:0;
+    margin: 0;
+    font-family: Verdana,sans-serif;
+}
+header {
+    background: #475c4d;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+}
+main {
+    width: 960px;
+    margin: 0 auto;
+}
+#deviantart-logo {
+    display: block;
+    height: 30px;
+    width: 130px;
+}
+#deviantart-logo span {
+    display: inline-block;
+}
+#deviantart-logo .mark {
+    background-size: contain;
+    background-image: url("https://st.deviantart.net/minish/main/logo/logo-mark.png");
+    float: left;
+    width: 18px;
+    height: 30px;
+    margin-right: 3px;
+}
+#deviantart-logo .type {
+    background-size: contain;
+    background-image: url("https://st.deviantart.net/minish/main/logo/logo-type.png");
+    float: left;
+    width: 109px;
+    height: 30px;
+}
+
+.page {
+    overflow: hidden;
+}
+.thumb {
+    float: left;
+    width: 300px;
+    height: 250px;
+    margin: 10px;
+}
+.ad {
+    position: relative;
+}
+.ad.expandable iframe {
+    position: absolute;
+}
+.dark {
+    background: #cad6c7;
+}
+.thumb-narrow {
+    width: 140px;
+}
+.full-row {
+    width: calc(100% - 20px);
+    position: relative;
+}
+.thumb-wide {
+    width: 460px;
+}
+
+.obstruction {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    clear: both;
+    display: block;
+    width: 300px;
+    height: 300px;
+    background: #475c4d;
+    opacity: 0.8;
+    cursor: move;
+}
+.obstruction .center {
+    text-align: center;
+    color: white;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); 
+}

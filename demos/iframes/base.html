@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>DeviantArt SafeFrame Guest</title>
+        <style type='text/css'>
+            body {
+                background: white;
+                padding: 4px;
+            }
+            .log {
+                height: calc(100vh - 50px);
+                overflow-y: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <span>inViewPercentage:</span> <span id="visibility"></span>
+        </div>
+        <div>
+            <button id="expand">Expand</button>
+            <button id="clear">Clear</button>
+        </div>
+        <ul id="log" class="log"></ul>
+
+        <script type='text/javascript' src='../../dist/deviantart-safeframes-guest.js'></script>
+        <script type='text/javascript'>
+            // Display log messages in our ul#log element
+            var ul = document.getElementById('log')
+            var log = function(message) {
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(message));
+                ul.appendChild(li);
+                // Scroll to bottom to show the latest log entry
+                ul.scrollTop = ul.scrollHeight;
+            };
+            
+            var showHelp = function() {
+                log("Click the iframe to show visibility");
+            };
+        
+            // Clear all log messages
+            document.getElementById('clear').addEventListener('click', function(e) {
+                var node = document.getElementById("log");
+                while (node.lastChild) {
+                    node.removeChild(node.lastChild);
+                }
+                e.stopPropagation();
+            });
+
+            if ($sf.ext.supports('exp-ovr')) {
+                // Request expansion from the host on click
+                document.getElementById('expand').addEventListener('click', function(e) {
+                    // ...only if the SafeFrame is currently collapsed
+                    if ($sf.ext.status() == 'collapsed') {
+                        log("expanding");
+                        // See how much we can expand
+                        var exp = $sf.ext.geom().exp;
+                        // Expand 200px to the right and 100px to the bottom
+                        $sf.ext.expand(exp);
+                        // Collapse back to original size after 3s
+                        setTimeout(function() {
+                            log("collapsing");
+                            $sf.ext.collapse();
+                        }, 3000);
+                    }
+                    e.stopPropagation();
+                });
+            } else {
+                // Hide the button since this safeframe does not support expansion
+                document.getElementById('expand').style.display = 'none';
+            }
+
+            // Register this ad unit with the SafeFrame manager on the host
+            $sf.ext.register(300, 250, function(e) {
+                console.log(e);
+                log("Host sent event: " + e.type);
+                document.getElementById('visibility').innerHTML = $sf.ext.inViewPercentage() + "%";
+            });
+
+            showHelp();
+        </script>
+    </body>
+</html>

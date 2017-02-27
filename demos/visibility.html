@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>DeviantArt SafeFrames Demo</title>
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script src="https://unpkg.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
+        <script type='text/javascript' src='/dist/deviantart-safeframes-host.js'></script>
+        <script type='text/javascript'>
+            var d = new DeviantArtSafeFramesHost();
+        </script>
+    </head>
+    <body>
+
+        <header>
+            <a href="http://deviantart.com">
+            <span id="deviantart-logo">
+                <span class="mark"></span>
+                <span class="type"></span>
+            </span>
+            </a>
+        </header>
+        <main>
+        <div class="page">
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
+
+            <div class="dark thumb"><div class="expandable ad">
+                <iframe src='iframes/base.html' name='atf-300x250#{"conf":{"exp-ovr":true}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+            </div></div>
+
+            <div class="dark thumb thumb-narrow"></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb thumb-narrow"></div>
+            <div class="dark thumb"></div>
+
+            <div class="dark thumb"><div class="ad">
+                <iframe src='iframes/base.html' name='btf-300x250#{"conf":{"exp-ovr":false}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+            </div></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
+
+            <div class="dark thumb full-row" style="overflow:auto">
+                <iframe src='iframes/base.html' name='btf-300x250#{"conf":{"exp-ovr":true}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute; top: 150px; right: -50px;"></iframe>
+            </div>
+
+            <div class="dark thumb"><div class="ad">
+                <iframe src='iframes/expand_when_visible.html' name='btf-300x250#{"conf":{"exp-ovr":true}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+            </div></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
+
+            <div class="obstruction"><div class="center">Move me over the ad and see how <br>its inViewPercentage changes</div></div>
+            <script type='text/javascript'>
+                var draggie = new Draggabilly( '.obstruction', {});
+            </script>
+        </div>
+        </main>
+    </body>
+</html>
+
