@@ -57,8 +57,8 @@ export default class Ext {
      * @sync  - it can be requested at anytime
      * @return {object | string | number}
      **/
-    meta(dict, key) {
-        return props.get(this).meta.value(dict, key);
+    meta(key, dict) {
+        return props.get(this).meta.value(key, dict);
     }
 
     /**
