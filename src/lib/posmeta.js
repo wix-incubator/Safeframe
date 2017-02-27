@@ -27,8 +27,8 @@ export default class PosMeta {
 
 
     /**
-     * @param {string} propKey - The name of the value to retrieve
-     * @param {string} [ownerKey] - The name of the owner key of the metadata
+     * @param {string} key - The name of the value to retrieve
+     * @param {string} [privateKey] - The name of the owner key of the metadata
      * value. By default, it is assumed to be publicd, so nothing needs to be
      * passed in unless looking for a specific proprietary value
      *
@@ -55,7 +55,7 @@ export default class PosMeta {
         }
         let privateData = {};
         if (publicData.hasOwnProperty(privateKey)) {
-            privateData = pubcliData[privateKey];
+            privateData = publicData[privateKey];
             delete publicData[privateKey];
         }
         return new PosMeta(publicData, privateKey, privateData);
