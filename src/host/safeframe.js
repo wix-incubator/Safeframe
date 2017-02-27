@@ -40,7 +40,7 @@ export default class SafeFrame {
         // has been initialized, so we can store the params and replace the name 
         // attribute with something easier to read.
         const meta = PosMeta.fromString(decodeURIComponent(String(iframe.getAttribute('name') || '').split('#').slice(1).join('#')), '/* @echo SECRET_KEY */');
-        const conf = meta.value('conf');
+        const conf = meta.value('conf') || {};
         this.features = {
             "exp-ovr": conf["exp-ovr"],
             "exp-push": conf["exp-push"],
