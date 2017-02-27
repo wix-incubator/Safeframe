@@ -37,4 +37,7 @@ fs.readFile(path.join(projectDir, 'secret.key'), 'utf8', function (err,data) {
     console.log("Copying secret.key to", dest);
     data = ['<?php', '$config["secret_key"] = "'+data+'";', '?>'].join("\n");
     fs.writeFile(dest, data);
+
+    console.log("All done!");
+    console.log("Please do not forget to run `vm jc` and `ads-munger` for the changes to take effect.");
 });
