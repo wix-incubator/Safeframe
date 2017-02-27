@@ -15,7 +15,7 @@ Also view:
  * [IAB SafeFrame Site](http://www.iab.net/safeframe)
  * [Live SafeFrame Samples and Tools](http://safeframes.net/)
 
-This implementation should be complicant with the [IAB SafeFrames v1.1
+This implementation should be compliant with the [IAB SafeFrames v1.1
 Draft](https://www.iab.com/wp-content/uploads/2014/08/SafeFrames_v1.1_final.pdf).
 
 On DeviantArt we use server side rendering of the iframes, and the parts of the
