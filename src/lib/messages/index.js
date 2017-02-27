@@ -1,3 +1,3 @@
-import messages from './messages.js'
+import Messages from './messages.js'
 
-export default messages;
+export default Messages;

@@ -3,7 +3,7 @@ const NAMESPACE = 'dasf';
 
 let instances = 1;
 
-export default class MessageEvent {
+class MessageEvent {
     constructor(e) {
         this.id = instances++;
         this.ts = +new Date();
@@ -21,18 +21,20 @@ export default class MessageEvent {
             data: this.data,
         });
     }
-
-    static fromEvent(e) {
-        let msg;
-        try {
-            msg = JSON.parse(e && e.data);
-        } catch(e) {
-        };
-        if (!msg || !msg.type || !msg.data || msg.namespace !== NAMESPACE) {
-            return null;
-        }
-
-        msg.originalEvent = e;
-        return new MessageEvent(msg);
-    }
 }
+
+MessageEvent.fromEvent = function(e) {
+    let msg;
+    try {
+        msg = JSON.parse(e && e.data);
+    } catch(err) {
+    }
+    if (!msg || !msg.type || !msg.data || msg.namespace !== NAMESPACE) {
+        return null;
+    }
+
+    msg.originalEvent = e;
+    return new MessageEvent(msg);
+}
+
+export default MessageEvent;
