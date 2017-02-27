@@ -47,7 +47,7 @@ Files and Directories
 LICENCE
 =======================================
 
-Copyright (c) 2016, DeviantArt Inc.
+Copyright (c) 2017, DeviantArt Inc.
 All rights reserved.
 
-See [LICENSE.md][LICENSE.md]
+See [LICENSE.md](LICENSE.md)
