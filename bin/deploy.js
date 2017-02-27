@@ -21,9 +21,12 @@ function copyFile(source, dest) {
 }
 
 var projectDir = path.join(__dirname, '..');
-var webDir = path.join(__dirname, '..', '..', '..', '..');
+var webDir = process.env.DATRUNK;
 ['deviantart-safeframes-host.min.js', 'deviantart-safeframes-guest.min.js'].forEach(function(filename) {
-    copyFile(path.join(projectDir, 'dist', filename), path.join(webDir, 'styles', 'jms', 'thirdparty', 'lib', 'deviantart-safeframes', filename.split('-').pop()));
+    var src = path.join(projectDir, 'dist', filename);
+    var dest = path.join(webDir, 'styles', 'jms', 'thirdparty', 'lib', 'deviantart-safeframes', filename.split('-').pop());
+    console.log("Copying file from", src, "to", dest);
+    copyFile(src, dest);
 });
 
 fs.readFile(path.join(projectDir, 'secret.key'), 'utf8', function (err,data) {
@@ -31,7 +34,7 @@ fs.readFile(path.join(projectDir, 'secret.key'), 'utf8', function (err,data) {
         return console.log(err);
     }
     var dest = path.join(webDir, 'vms', 'lib', 'ads', 'v.', 'safeframe_config.php');
+    console.log("Copying secret.key to", dest);
     data = ['<?php', '$config["secret_key"] = "'+data+'";', '?>'].join("\n");
     fs.writeFile(dest, data);
-    console.log(data);
 });
