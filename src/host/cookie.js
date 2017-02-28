@@ -1,5 +1,5 @@
-export default class Cookie {
-    static get(name) {
+const Cookie = {
+    get: function(name) {
         const fieldPrefix = `${name}=`;
         let value = null;
 
@@ -21,9 +21,9 @@ export default class Cookie {
         });
 
         return value;
-    }
+    },
 
-    static set(name, value, days = null, path = "/", domain = null, secure = false) {
+    set: function(name, value, days = null, path = "/", domain = null, secure = false) {
 
         const date = new Date();
         let expires = '';
@@ -48,20 +48,19 @@ export default class Cookie {
         }
 
         path = `path=${path}`;
-        debugger;
-
         document.cookie = [namevalue, expires, secure, domain, path].filter(item => !!item).join('; ');
-    }
+    },
 
-    static remove(name) {
+    remove: function(name) {
         Cookie.set(name, '', -1);
-    }
+    },
 
-    static isEnabled() {
+    isEnabled: function() {
         if (navigator.cookieEnabled) {
             return true;
         }
         document.cookie = "testcookie";
         return document.cookie.indexOf("testcookie") != -1;
     }
-}
+};
+export default Cookie;

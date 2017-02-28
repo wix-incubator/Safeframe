@@ -21,7 +21,7 @@ export default class PosMeta {
      */
     constructor(publicData, privateKey, privateData) {
         this.data = publicData || {};
-        this.privateData = privateData;
+        this.privateData = privateData || {};
         this.privateKey = privateKey;
     }
 
@@ -40,24 +40,24 @@ export default class PosMeta {
         } 
         return this.data[key];
     }
-
-    /**
-     * @param {string} jsonString - Public and private data as a json encoded string
-     * @param {string} [privateKey] - A key name to identify the owner or a particular set of metadata.
-     *
-     * @returns {PosMeta}
-     */
-    static fromString(jsonString, privateKey) {
-        let publicData = {};
-        try {
-            publicData = JSON.parse(jsonString);
-        } catch(e) {
-        }
-        let privateData = {};
-        if (publicData.hasOwnProperty(privateKey)) {
-            privateData = publicData[privateKey];
-            delete publicData[privateKey];
-        }
-        return new PosMeta(publicData, privateKey, privateData);
+}
+/**
+ * @param {string} jsonString - Public and private data as a json encoded string
+ * @param {string} [privateKey] - A key name to identify the owner or a particular set of metadata.
+ *
+ * @static
+ * @returns {PosMeta}
+ */
+PosMeta.fromString = function(jsonString, privateKey) {
+    let publicData = {};
+    try {
+        publicData = JSON.parse(jsonString);
+    } catch(e) {
     }
+    let privateData = {};
+    if (publicData.hasOwnProperty(privateKey)) {
+        privateData = publicData[privateKey];
+        delete publicData[privateKey];
+    }
+    return new PosMeta(publicData, privateKey, privateData);
 }

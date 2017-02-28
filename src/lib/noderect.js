@@ -70,22 +70,38 @@ export default class NodeRect {
     getArea() {
         return (this.right - this.left) * (this.bottom - this.top);
     }
+}
 
-    static getOverlapRect(r1, r2) {
-        const l = max(r1.left, r2.left);
-        const r = min(r1.left + r1.width, r2.left + r2.width);
-        const t = max(r1.top, r2.top);
-        const b = min(r1.top + r1.height, r2.top + r2.height);
-        if (r >= l && b >= t) {
-            return new NodeRect(t, r, b, l, r - l, b - t);
-        }
-        return false;
+/**
+ * @static
+ * getOverlapRect
+ *
+ * @param {NodeRect} r1
+ * @param {NodeRect} r2
+ * @returns {NodeRect}
+ */
+NodeRect.getOverlapRect = function(r1, r2) {
+    const l = max(r1.left, r2.left);
+    const r = min(r1.left + r1.width, r2.left + r2.width);
+    const t = max(r1.top, r2.top);
+    const b = min(r1.top + r1.height, r2.top + r2.height);
+    if (r >= l && b >= t) {
+        return new NodeRect(t, r, b, l, r - l, b - t);
     }
+    return false;
+}
 
-    static getOverlapArea(r1, r2) {
-        const xoverlap = max(0, min(r1.right, r2.right) - max(r1.left, r2.left));
-        const yoverlap = max(0, min(r1.bottom, r2.bottom) - max(r1.top, r2.top));
-        
-        return xoverlap * yoverlap;
-    }
+/**
+ * @static
+ * getOverlapArea
+ *
+ * @param {NodeRect} r1
+ * @param {NodeRect} r2
+ * @returns {Number}
+ */
+NodeRect.getOverlapArea = function(r1, r2) {
+    const xoverlap = max(0, min(r1.right, r2.right) - max(r1.left, r2.left));
+    const yoverlap = max(0, min(r1.bottom, r2.bottom) - max(r1.top, r2.top));
+
+    return xoverlap * yoverlap;
 }

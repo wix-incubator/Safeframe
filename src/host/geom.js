@@ -267,9 +267,11 @@ class GeomCalculator {
     }
 }
 
-export default class Geom {
-    static get(node) {
+const Geom = {
+    get: function(node) {
         const calc = new GeomCalculator(node);
         return calc.getGeom();
     }
 }
+
+export default Geom;
