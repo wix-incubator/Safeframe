@@ -13,8 +13,9 @@
     "serve": "http-server -p 9090 .",
     "open:demo": "open http://localhost:9090/demos/visibility.html",
     "dev": "npm run open:demo & parallelshell 'npm run build:dev -s' 'npm run serve -s'",
-    "deploy": "git push && git push --tags && node bin/deploy.js",
-    "version": "npm run build && git add -u"
+    "da": "node bin/deploy.js",
+    "version": "npm run build && git add -u",
+    "push": "git push && git push --tags"
   },
   "repository": "https://github.com/DeviantArt/SafeFrame",
   "keywords": [
