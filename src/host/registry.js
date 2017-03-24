@@ -9,6 +9,7 @@ import SafeFrame from './safeframe'
 class Registry {
     constructor () {
         this.ads = [];
+        this.errors = [];
     }
 
     /**
@@ -31,7 +32,7 @@ class Registry {
      **/
     nuke (id) {
         if (id !== undefined) {
-            const idx = this.ads.findIndex(id => id == ad.id);
+            const idx = this.ads.findIndex(ad => id == ad.id);
             if (idx > -1) {
                 this.ads[idx].nuke();
                 this.ads.splice(idx, 1);

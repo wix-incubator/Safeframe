@@ -158,7 +158,7 @@ export default class Ext {
             props.get(this).registered_callbacks.push(callback);
         }
         const data = {w: width, h:height};
-        /* @if DEBUG */
+        /* @ifdef DEBUG */
         data.params = {
             public: props.get(this).meta.data,
             private: props.get(this).meta.privateData

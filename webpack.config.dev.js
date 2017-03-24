@@ -1,13 +1,13 @@
 var path = require('path');
-var secretKey = require('fs').readFileSync(path.join(__dirname, 'secret.key'));
+var secretKey = require('fs').readFileSync(path.join(__dirname, 'secret.key'), 'utf8');
 
 module.exports = {
     entry: {
-        "deviantart-safeframes-host": "./src/host/index.js",
-        "deviantart-safeframes-guest": "./src/guest/index.js"
+        "deviantart-safeframes-host":  path.join(__dirname, "src", "host", "index.js"),
+        "deviantart-safeframes-guest": path.join(__dirname, "src", "guest", "index.js")
     },
     output: {
-        path: './dist',
+        path: path.join(__dirname, 'dist'),
         filename: '[name].js'
     },
     module: {

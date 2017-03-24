@@ -254,7 +254,7 @@ class GeomCalculator {
             b: max(0, rect.bottom - node.bottom),
             l: max(0, node.left - rect.left),
             xs: !!scroll.yscroll,
-            ys: !!scroll.xscroll
+            yx: !!scroll.xscroll
         };
     }
 

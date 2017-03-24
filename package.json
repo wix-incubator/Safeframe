@@ -10,12 +10,14 @@
     "build": "npm run build:prod",
     "build:dev": "webpack -d --config webpack.config.dev.js",
     "build:prod": "webpack -p --config webpack.config.prod.js",
+    "build:tests": "webpack -p --config webpack.config.tests.js",
     "serve": "http-server -p 9090 .",
     "open:demo": "open http://localhost:9090/demos/visibility.html",
     "dev": "npm run open:demo & parallelshell 'npm run build:dev -s' 'npm run serve -s'",
     "da": "node bin/deploy.js",
     "version": "npm run build && git add -u",
-    "push": "git push && git push --tags"
+    "push": "git push && git push --tags",
+    "test": "npm run -s build:tests && mocha --require jsdom-global/register test/tests.bundle.js -u bdd -R spec"
   },
   "repository": "https://github.com/DeviantArt/SafeFrame",
   "keywords": [
@@ -35,12 +37,20 @@
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.1",
     "babel-preset-es2015": "^6.22.0",
+    "chai": "^3.5.0",
     "http-server": "^0.9.0",
+    "jsdom": "^9.12.0",
+    "jsdom-global": "2.1.1",
+    "mocha": "^3.2.0",
+    "mocha-jsdom": "^1.1.0",
+    "mocha-webpack": "^0.7.0",
     "open": "0.0.5",
     "parallelshell": "^2.0.0",
     "preprocess-loader": "^0.2.0",
     "randomstring": "^1.1.5",
     "rimraf": "latest",
+    "sinon": "^2.1.0",
+    "sinon-chai": "^2.9.0",
     "webpack": "^2.2.1"
   }
 }

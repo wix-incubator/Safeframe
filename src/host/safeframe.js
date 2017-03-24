@@ -180,6 +180,7 @@ export default class SafeFrame {
         this.rect.bottom += opt.b || 0;
         this.rect.width = this.rect.right - this.rect.left;
         this.rect.height = this.rect.bottom - this.rect.top;
+        this.node.style.position = 'absolute';
         this.setNodeRect(this.rect);
 
         this.status = Status.EXPANDED;
@@ -202,6 +203,7 @@ export default class SafeFrame {
             this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
 
             this.rect = this.collapse_rect;
+            this.node.style.position = 'initial';
             this.setNodeRect(this.rect);
 
             this.status = Status.COLLAPSED;

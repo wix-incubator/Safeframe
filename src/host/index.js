@@ -54,9 +54,9 @@ class DeviantArtSafeFramesHost {
      */
     register(e) {
         // Find the iframe from which we received the message
-        const frames = document.getElementsByTagName('iframe');
-        for (let i = 0; i < frames.length; i++) {
-            const iframe = frames[i];
+        const iframes = document.getElementsByTagName('iframe');
+        for (let i = 0; i < iframes.length; i++) {
+            let iframe = iframes[i];
             if (iframe.contentWindow === e.originalEvent.source) {
                 const ad = new SafeFrame(iframe, e.data.w, e.data.h, this.config);
                 logger.log("Creating new SafeFrame", ad);
@@ -78,8 +78,10 @@ class DeviantArtSafeFramesHost {
                 PosMeta: PosMeta,
                 PosConfig: null, // DeviantArt does not support client-side rendering
                 Position: null, // DeviantArt does not support client-side rendering
+                conf: this.config,
+                nuke: (id) => this.host.registry.nuke(id),
+                get: (id) => this.host.registry.get(id)
             },
-            conf: this.config
         };
         Object.freeze(api);
         return api;

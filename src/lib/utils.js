@@ -1,3 +1,6 @@
+export function noop(n) {
+}
+
 export function isNumeric(n) {
     return n !== null && !isNaN(+n) && isFinite(n);
 }

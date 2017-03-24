@@ -16,11 +16,11 @@ export default class Config {
         // onBeforePosMsg(id, msgName, data)
         // A function that gets called each time a position sends a request for some functionality. Returning
         // true cancels the command request.
-        this.onBeforePosMsg = conf.onBeforePosMsg;
+        this.onBeforePosMsg = conf.onBeforePosMsg || false;
 
         // onPosMsg(id, msgName, data)
         // A callback function which gets called each time a position sends a message up to your web page
-        this.onPosMsg = conf.onPosMsg;
+        this.onPosMsg = conf.onPosMsg || false;
 
         // DeviantArt uses server-side rendering of the iframes, and these properties and callbacks
         // are not used
@@ -29,18 +29,18 @@ export default class Config {
 
         // onEndPosRender(id)
         // A function which gets called each time a position has finished rendering
-        this.onEndPosRender = conf.onEndPosRender;
+        this.onEndPosRender = conf.onEndPosRender || false;
 
         // onFailure(id)
         // A function which gets called anytime a render call has failed or timed out
-        this.onFailure = conf.onFailure;
+        this.onFailure = conf.onFailure || false;
 
         // onStartPosRender(id)
         // A callback function which gets called each time a position is about to be rendered
-        this.onStartPosRender = conf.onStartPosRender;
+        this.onStartPosRender = conf.onStartPosRender || false;
         
         // onSuccess(id)
         // A callback function which gets called anytime a render call has successfully completed.
-        this.onSuccess = conf.onSuccess;
+        this.onSuccess = conf.onSuccess || false;
     }
 }
