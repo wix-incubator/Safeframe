@@ -4,12 +4,13 @@
 
 import $ from 'balalaika';
 import logger from '../lib/logger.js'
+import errors from '../lib/errors.js'
 import SafeFrame from './safeframe'
 
 class Registry {
     constructor () {
         this.ads = [];
-        this.errors = [];
+        this.errors = errors;
     }
 
     /**
@@ -36,6 +37,8 @@ class Registry {
             if (idx > -1) {
                 this.ads[idx].nuke();
                 this.ads.splice(idx, 1);
+            } else {
+                this.errors.push(new Error("Could not nuke a safeframe. The safeframe with the supplied id could not be found.", {id: id}));
             }
             return;
         }
@@ -50,7 +53,11 @@ class Registry {
      * Get a SafeFrame with the specific id
      **/
     get (id) {
-        return this.ads.find(ad => ad.id == id);
+        const safeframe = this.ads.find(ad => ad.id == id);
+        if (!safeframe) {
+            this.errors.push(new Error("Could not get a safeframe that has the supplied id.", {id: id}));
+        }
+        return safeframe;
     }
 
     /**

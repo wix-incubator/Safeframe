@@ -1,5 +1,5 @@
 /**
- * Simple proxy to windoe.console
+ * Simple proxy to window.console
  */
 
 // @ifdef DEBUG 

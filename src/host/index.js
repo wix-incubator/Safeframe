@@ -6,7 +6,8 @@ import logger from '../lib/logger.js';
 import Config from './config.js';
 import PosMeta from '../lib/posmeta.js';
 import Geom from './geom.js';
-import * as dom from '../lib/dom.js'
+import * as dom from '../lib/dom.js';
+import errors from '../lib/errors.js';
 
 import {throttle} from '../lib/utils.js';
 
@@ -53,18 +54,20 @@ class DeviantArtSafeFramesHost {
      * @param {object} e - Post-message event object
      */
     register(e) {
-        // Find the iframe from which we received the message
-        const iframes = document.getElementsByTagName('iframe');
-        for (let i = 0; i < iframes.length; i++) {
-            let iframe = iframes[i];
-            if (iframe.contentWindow === e.originalEvent.source) {
-                const ad = new SafeFrame(iframe, e.data.w, e.data.h, this.config);
-                logger.log("Creating new SafeFrame", ad);
-                this.host.registry.register(ad);
-
-                break;
+        if (e && e.originalEvent) {
+            // Find the iframe from which we received the message
+            const iframes = document.getElementsByTagName('iframe');
+            for (let i = 0; i < iframes.length; i++) {
+                let iframe = iframes[i];
+                if (iframe.contentWindow === e.originalEvent.source) {
+                    const ad = new SafeFrame(iframe, e.data.w, e.data.h, this.config);
+                    logger.log("Creating new SafeFrame", ad);
+                    this.host.registry.register(ad);
+                    return;
+                }
             }
         }
+        errors.push(new Error("Could not find the iframe who sent the 'register' message"));
     }
 
     api() {
