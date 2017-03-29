@@ -8,11 +8,10 @@ export default class Guest {
         this.specVersion = "1.1";
 
         // $sf.info.errs is not required by the spec, but it helps with the debugging
-        const info = {
+        this.info = {
             errs: errors
         };
-        Object.freeze(info);
-        this.info = info;
+        Object.freeze(this.info);
 
         // We send the metadata through window.name parameter
         let meta_string;

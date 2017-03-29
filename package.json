@@ -17,7 +17,8 @@
     "da": "node bin/deploy.js",
     "version": "npm run build && git add -u",
     "push": "git push && git push --tags",
-    "test": "npm run -s build:tests && mocha --require jsdom-global/register test/tests.bundle.js -u bdd -R spec"
+    "test": "npm run -s build:tests && mocha --require jsdom-global/register test/tests.bundle.js -u bdd -R spec",
+    "start": "npm run dev"
   },
   "repository": "https://github.com/DeviantArt/SafeFrame",
   "keywords": [
