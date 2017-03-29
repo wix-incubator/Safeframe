@@ -28,15 +28,10 @@ Interenet Explorer versions prior to version 9.
 Files and Directories
 =====================
 
-  /src
-        This contains the actual javascript and HTML source required
-		
-  /dist
-        This contains the production ready code that we use on our site.
-
-  /demos
-        This contains various demo pages, that load the [demos/guest.html][demos/guest.html]
-        in an iframe and demonstrate various features and functionality.
+  * `/src` This folder contains the actual javascript and HTML source required
+  * `/dist` This folder contains the production ready code that we use on our site.
+  * `/demos` This folder contains various demo pages, that load the [demos/guest.html](demos/guest.html) in an iframe and demonstrate various features and functionality.
+  * `/test` This folder contains the automated tests files.
 
 
 LICENCE
