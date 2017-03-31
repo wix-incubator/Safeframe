@@ -16,5 +16,6 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel-loader?presets[]=es2015!preprocess-loader?+DEBUG&SECRET_KEY='+secretKey+'&NODE_ENV=development'
         }]
-    }
+    },
+    devtool: "#inline-source-map"
 };

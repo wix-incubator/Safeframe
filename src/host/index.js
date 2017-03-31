@@ -92,3 +92,4 @@ class DeviantArtSafeFramesHost {
 }
 
 window.DeviantArtSafeFramesHost = DeviantArtSafeFramesHost;
+export {DeviantArtSafeFramesHost as default}

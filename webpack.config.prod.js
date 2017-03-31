@@ -6,8 +6,7 @@ var version = require("./package.json").version;
 module.exports = {
     entry: {
         "deviantart-safeframes-host":  path.join(__dirname, "src", "host", "index.js"),
-        "deviantart-safeframes-guest": path.join(__dirname, "src", "guest", "index.js"),
-        "tests": path.join(__dirname, "test", "index.js")
+        "deviantart-safeframes-guest": path.join(__dirname, "src", "guest", "index.js")
     },
     output: {
         path: path.join(__dirname, 'dist'),
