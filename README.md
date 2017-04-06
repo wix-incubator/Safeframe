@@ -30,7 +30,7 @@ Files and Directories
 
   * `/src` This folder contains the actual javascript and HTML source required
   * `/dist` This folder contains the production ready code that we use on our site.
-  * `/demos` This folder contains various demo pages, that load the [demos/guest.html](demos/guest.html) in an iframe and demonstrate various features and functionality.
+  * `/demos` This folder contains various demo pages, that load the [demos/visibility.html](demos/visibility.html) in an iframe and demonstrate various features and functionality.
   * `/test` This folder contains the automated tests files.
 
 
