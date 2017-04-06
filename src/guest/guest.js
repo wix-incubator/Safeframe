@@ -14,13 +14,9 @@ class Guest {
         Object.freeze(this.info);
 
         // We send the metadata through window.name parameter
-        let meta_string;
-        try {
-            meta_string = decodeURIComponent(String(window.name || '').split('#').slice(1).join('#'));
-        } catch(e) {
-            errors.push(e);
-        }
+        let meta_string = String(window.name || '');
         const meta = PosMeta.fromString(meta_string, '/* @echo SECRET_KEY */');
+        window.name = '';
         this.ext = new Ext(meta);
     }
 }

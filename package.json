@@ -32,7 +32,8 @@
   "author": "Djordje Ungar",
   "license": "LicenseRef-LICENSE",
   "dependencies": {
-    "balalaika": "^1.0.1"
+    "balalaika": "^1.0.1",
+    "crypto-js": "^3.1.9-1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

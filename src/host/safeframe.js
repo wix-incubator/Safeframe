@@ -39,7 +39,7 @@ export default class SafeFrame {
         // attribute. Instantiating an AdObject on that iframe, means that the ad
         // has been initialized, so we can store the params and replace the name 
         // attribute with something easier to read.
-        const meta = PosMeta.fromString(decodeURIComponent(String(iframe.getAttribute('name') || '').split('#').slice(1).join('#')), '/* @echo SECRET_KEY */');
+        const meta = PosMeta.fromString(String(iframe.getAttribute('name') || ''), '/* @echo SECRET_KEY */');
         const conf = meta.value('conf') || {};
         this.features = {
             "exp-ovr": conf["exp-ovr"],
@@ -47,12 +47,11 @@ export default class SafeFrame {
             "read-cookie": hostConfig.allowCookieReads && conf["read-cookie"],
             "write-cookie": hostConfig.allowCookieWrites && conf["write-cookie"]
         }
-        // @ifdef DEBUG
-            this.params = {
-                public: meta.data,
-                private: meta.privateData
-            };
-        // @endif
+        // This is for debugging only, but it should be safe to expose this on the host
+        this.params = {
+            public: meta.data,
+            private: meta.privateData
+        };
 
         this.messages = new Messages(iframe);
         this.messages

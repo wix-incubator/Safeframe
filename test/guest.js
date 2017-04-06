@@ -16,7 +16,7 @@ var meta = {
     }
 };
 meta[secretKey] = {privateKey: "SECRET VALUE"};
-helpers.setMetadata(meta);
+helpers.setMetadata(meta, secretKey);
 
 require("../src/guest/index.js");
 

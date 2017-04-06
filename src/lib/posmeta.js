@@ -1,3 +1,7 @@
+import AES from 'crypto-js/aes';
+import UTF8 from 'crypto-js/enc-utf8';
+import errors from '../lib/errors.js';
+
 /**
  * PosMeta
  *
@@ -42,18 +46,33 @@ export default class PosMeta {
     }
 }
 /**
- * @param {string} jsonString - Public and private data as a json encoded string
+ * @param {string} jsonString - A json encoded string (it can additionally be a base64 encoded openSSL encrypted)
  * @param {string} [privateKey] - A key name to identify the owner or a particular set of metadata.
  *
  * @static
  * @returns {PosMeta}
  */
 PosMeta.fromString = function(jsonString, privateKey) {
-    let publicData = {};
+    let publicData;
+    // If it's a base64 encoded openSSL encrypted string, try to decrypt it
+    try {
+        let decrypted = AES.decrypt(jsonString, privateKey);
+        let decryptedString = decrypted.toString(UTF8);
+        if (JSON.parse(decryptedString)) {
+            jsonString = decryptedString;
+        }
+    } catch(e) {
+        // errorblind
+    }
+
+    // try to parse the jsonString
     try {
         publicData = JSON.parse(jsonString);
-    } catch(e) {
+    } catch (e) {
+        publicData = {};
     }
+
+    // Initialize the privateData
     let privateData = {};
     if (publicData.hasOwnProperty(privateKey)) {
         privateData = publicData[privateKey];

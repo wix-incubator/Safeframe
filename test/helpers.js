@@ -1,4 +1,5 @@
 import Messages from '../src/lib/messages';
+import AES from 'crypto-js/aes';
 
 export
 function simulateHostMessage(type, data) {
@@ -10,8 +11,8 @@ function simulateHostMessage(type, data) {
 }
 
 export
-function setMetadata(meta) {
-    window.name = '#' + JSON.stringify(meta);
+function setMetadata(json, privateKey) {
+    window.name = AES.encrypt(JSON.stringify(json || {}), privateKey).toString();
 }
 
 export 
@@ -32,7 +33,6 @@ function createIframe(content) {
             api.window[name] = value;
         }
     };
-    api.window.whoami = function() { console.log("I am me")};
     api.send = function(type, data) {
         window.dispatchEvent(new window.MessageEvent('message', {
             data: JSON.stringify({
