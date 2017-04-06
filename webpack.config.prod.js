@@ -16,7 +16,7 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel-loader?presets[]=es2015!preprocess-loader?SECRET_KEY='+secretKey+'&NODE_ENV=production'
+            loader: 'babel-loader!preprocess-loader?SECRET_KEY='+secretKey+'&NODE_ENV=production'
         }]
     },
     plugins: [
