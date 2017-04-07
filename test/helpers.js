@@ -1,5 +1,6 @@
 import Messages from '../src/lib/messages';
-import AES from 'crypto-js/aes';
+import {xor_cipher} from '../src/lib/xor';
+import {atob, btoa} from 'base64';
 
 export
 function simulateHostMessage(type, data) {
@@ -12,7 +13,7 @@ function simulateHostMessage(type, data) {
 
 export
 function setMetadata(json, privateKey) {
-    window.name = AES.encrypt(JSON.stringify(json || {}), privateKey).toString();
+    window.name = btoa(xor_cipher(JSON.stringify(json || {}), privateKey));
 }
 
 export 

@@ -4,7 +4,7 @@ var sinon = require("sinon");
 var helpers = require("./helpers");
 
 // Populate window.name with fake meta data
-var secretKey = "/* @echo SECRET_KEY */";
+var SAFEFRAME_SECRET = "/* @echo SECRET_KEY */";
 var meta = {
     boolean: true,
     number: 1,
@@ -15,8 +15,13 @@ var meta = {
         "write-cookie": true
     }
 };
-meta[secretKey] = {privateKey: "SECRET VALUE"};
-helpers.setMetadata(meta, secretKey);
+var privateData = {
+    magicWord: {
+        privateKey: "let me tell you a secret"
+    }
+};
+meta[SAFEFRAME_SECRET] = privateData;
+helpers.setMetadata(meta, SAFEFRAME_SECRET);
 
 require("../src/guest/index.js");
 
@@ -78,7 +83,7 @@ describe("DeviantArt SafeFrames Guest", function() {
             expect(window.$sf.ext.meta("privateKey"), "privateKey").to.be.undefined;
         });
         it("unless you know the magic word", function() {
-            expect(window.$sf.ext.meta("privateKey", secretKey), "privateKey", ).to.equal(meta[secretKey].privateKey);
+            expect(window.$sf.ext.meta("privateKey", "magicWord"), "privateKey", ).to.equal(meta[SAFEFRAME_SECRET].magicWord.privateKey);
         });
     });
     describe("window.$sf.ext.status", function() {
