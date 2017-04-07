@@ -33,9 +33,14 @@ fs.readFile(path.join(projectDir, 'secret.key'), 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
-    var dest = path.join(webDir, 'vms', 'lib', 'ads', 'v.', 'safeframe_config.php');
+    var dest = path.join(webDir, 'vms', 'lib', 'ads', 'v.', 'safeframe_secret.php');
     console.log("Copying secret.key to", dest);
-    data = ['<?php', '$config["secret_key"] = "'+data+'";', '?>'].join("\n");
+    data = [
+        '<?php', 
+        '// This key is generated via build script from https://github.com/DeviantArt/SafeFrame',
+        'define("SAFEFRAME_SECRET", "'+data+'");', 
+        '?>'
+    ].join("\n");
     fs.writeFile(dest, data);
 
     console.log("All done!");
