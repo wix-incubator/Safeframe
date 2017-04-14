@@ -2,7 +2,6 @@
  * Registry manages ad objects
  */
 
-import $ from 'balalaika';
 import logger from '../lib/logger.js'
 import errors from '../lib/errors.js'
 import SafeFrame from './safeframe'
