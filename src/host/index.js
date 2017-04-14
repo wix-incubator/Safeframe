@@ -60,9 +60,19 @@ class DeviantArtSafeFramesHost {
             for (let i = 0; i < iframes.length; i++) {
                 let iframe = iframes[i];
                 if (iframe.contentWindow === e.originalEvent.source) {
-                    const ad = new SafeFrame(iframe, e.data.w, e.data.h, this.config);
-                    logger.log("Creating new SafeFrame", ad);
-                    this.host.registry.register(ad);
+                    let registered;
+                    this.host.registry.each(function(ad) {
+                        if (ad.node == iframe) {
+                            registered = ad;
+                        }
+                    });
+                    if (registered) {
+                        logger.log("Safeframe already registered.", e);
+                    } else {
+                        const ad = new SafeFrame(iframe, e.data.w, e.data.h, this.config);
+                        logger.log("Creating new SafeFrame", ad);
+                        this.host.registry.register(ad);
+                    }
                     return;
                 }
             }
