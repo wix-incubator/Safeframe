@@ -200,11 +200,12 @@ class GeomCalculator {
             iv = max(0, (xoverlap * yoverlap - xobstruct * yobstruct) / (node_rect.width * node_rect.height));
         }
 
+        const scroll = dom.getScroll();
         return {
-            t: node_rect.top,
-            r: node_rect.right,
-            b: node_rect.bottom,
-            l: node_rect.left,
+            t: node_rect.top - scroll.y,
+            r: node_rect.right - scroll.x,
+            b: node_rect.bottom - scroll.y,
+            l: node_rect.left - scroll.x,
             z: node_style.zIndex,
             w: node_rect.width,
             h: node_rect.height,
