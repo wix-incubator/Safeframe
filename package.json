@@ -1,7 +1,7 @@
 {
   "name": "deviantart-safeframe",
   "private": true,
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "DeviantArt's implementation of the IAB SafeFrame standard",
   "scripts": {
     "genkey": "node bin/generate-key.js",
