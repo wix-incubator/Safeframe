@@ -1,3 +1,6 @@
+import WeakMap from 'core-js/es6/weak-map';
+import Object from 'core-js/es6/object';
+
 import Messages from '../lib/messages';
 import geom from './geom.js';
 

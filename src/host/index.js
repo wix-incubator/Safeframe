@@ -1,3 +1,5 @@
+import Object from 'core-js/es6/object';
+
 import $ from 'balalaika';
 import Host from './host.js';
 import SafeFrame from './safeframe.js';

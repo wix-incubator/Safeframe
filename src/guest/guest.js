@@ -1,3 +1,5 @@
+import Object from 'core-js/es6/object';
+
 import Ext from './ext.js';
 import PosMeta from '../lib/posmeta.js';
 import errors from '../lib/errors.js';
