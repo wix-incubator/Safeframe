@@ -20,11 +20,20 @@ class Registry {
             logger.error('Ad must be an instance of ads.safeframe.iab.Ad', ad);
         }
 
-        if (this.ads.findIndex(id => id == ad.id) > -1) {
+        if (this.indexOfId(ad.id) > -1) {
             logger.warn('Ad with the specified id already exists.', ad.id);
         }
 
         this.ads.push(ad);
+    }
+
+    indexOfId (id) {
+        for (var i = 0; i < this.ads.length; ++i) {
+            if (this.ads[i].id == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -32,7 +41,7 @@ class Registry {
      **/
     nuke (id) {
         if (id !== undefined) {
-            const idx = this.ads.findIndex(ad => id == ad.id);
+            const idx = this.indexOfId(id);
             if (idx > -1) {
                 this.ads[idx].nuke();
                 this.ads.splice(idx, 1);
@@ -52,11 +61,11 @@ class Registry {
      * Get a SafeFrame with the specific id
      **/
     get (id) {
-        const safeframe = this.ads.find(ad => ad.id == id);
-        if (!safeframe) {
-            this.errors.push(new Error("Could not get a safeframe that has the supplied id.", {id: id}));
+        const idx = this.indexOfId(id);
+        if (idx > -1) {
+            return this.ads[idx];
         }
-        return safeframe;
+        this.errors.push(new Error("Could not get a safeframe that has the supplied id.", {id: id}));
     }
 
     /**

@@ -1,4 +1,4 @@
-import WeakMap from 'core-js/es6/weak-map';
+import 'core-js/fn/weak-map';
 
 import $ from 'balalaika';
 import MessageEvent from './messageevent.js';

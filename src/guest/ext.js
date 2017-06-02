@@ -1,5 +1,5 @@
-import WeakMap from 'core-js/es6/weak-map';
-import Object from 'core-js/es6/object';
+import 'core-js/fn/object/assign';
+import 'core-js/fn/weak-map';
 
 import Messages from '../lib/messages';
 import geom from './geom.js';

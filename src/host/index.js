@@ -1,4 +1,4 @@
-import Object from 'core-js/es6/object';
+import 'core-js/fn/object/freeze';
 
 import $ from 'balalaika';
 import Host from './host.js';
