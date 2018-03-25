@@ -51,8 +51,13 @@ main {
     height: 250px;
     margin: 10px;
 }
+.thumb-expandable {
+    width: auto;
+    height: auto;
+}
 .ad {
     position: relative;
+    font-size: 0; 
 }
 .ad.expandable iframe {
     position: absolute;

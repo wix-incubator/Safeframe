@@ -106,12 +106,32 @@ export default class SafeFrame {
     /**
      * Resize/reposition the ad element
      **/
-    setNodeRect(rect) {
+    setNodeRect(node, rect) {
+        if (arguments.length === 1) {
+            rect = node;
+            node = this.node;
+        }
         const px = 'px';
-        this.node.style.top = rect.top + px;
-        this.node.style.left = rect.left + px;
-        this.node.style.width = rect.width + px;
-        this.node.style.height = rect.height + px;
+        node.style.top = rect.top + px;
+        node.style.left = rect.left + px;
+        node.style.width = rect.width + px;
+        node.style.height = rect.height + px;
+    }
+
+    getNodeStyles(node, attrs) {
+        let styles = {};
+        attrs.forEach(function(s) {
+            styles[s] = node.style[s];
+        });
+        return styles;
+    }
+
+    setNodeStyles(node, styles) {
+        for (let s in styles) {
+            if (styles.hasOwnProperty(s)) {
+                node.style[s] = styles[s];
+            }
+        }
     }
 
     /**
@@ -168,7 +188,9 @@ export default class SafeFrame {
         this.status = Status.EXPANDING;
         this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
 
-        this.rect = dom.getRectRelativeTo(this.node, this.node.offsetParent);
+
+        this.offset_parent = this.node.offsetParent;
+        this.rect = dom.getRectRelativeTo(this.node, this.offset_parent);
         this.collapse_rect = new NodeRect(this.rect);
 
         // TODO: check if opt rect can fit inside of the exp rect
@@ -179,9 +201,19 @@ export default class SafeFrame {
         this.rect.bottom += opt.b || 0;
         this.rect.width = this.rect.right - this.rect.left;
         this.rect.height = this.rect.bottom - this.rect.top;
-        this.node.style.position = 'absolute';
-        this.setNodeRect(this.rect);
 
+        if (e.data.push) {
+            // push expand
+            // Save original size of the offsetParent node
+            this.offset_parent_saved_styles = this.getNodeStyles(this.offset_parent, ['width', 'height']);
+            this.setNodeStyles(this.offset_parent, {width: Math.max(parseInt(this.rect.width,10), this.offset_parent.offsetWidth)+'px', height: Math.max(parseInt(this.rect.height), this.offset_parent.offsetHeight)+'px'});
+            this.setNodeRect(this.rect);
+        } else {
+            this.offset_parent_saved_styles = false;
+            // overlay expand
+            this.node.style.position = 'absolute';
+            this.setNodeRect(this.rect);
+        }
         this.status = Status.EXPANDED;
         this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
     }
@@ -200,6 +232,12 @@ export default class SafeFrame {
         if (this.status == Status.EXPANDED || this.status == Status.EXPANDING) {
             this.status = Status.COLLAPSING;
             this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
+
+            // If we have saved parentOffset restore it
+            if (this.offset_parent && this.offset_parent_saved_styles) {
+                this.setNodeStyles(this.offset_parent, this.offset_parent_saved_styles);
+                this.offset_parent_saved_styles = false;
+            }
 
             this.rect = this.collapse_rect;
             this.node.style.position = 'initial';

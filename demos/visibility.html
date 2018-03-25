@@ -7,7 +7,7 @@
         <script src="https://unpkg.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
         <script type='text/javascript' src='/dist/deviantart-safeframes-host.js'></script>
         <script type='text/javascript'>
-            var d = new DeviantArtSafeFramesHost();
+            var d = new DeviantArtSafeFramesHost({'exp-push': true});
         </script>
     </head>
     <body>
@@ -28,6 +28,15 @@
             <div class="dark thumb"><div class="expandable ad">
                 <iframe src='iframes/base.html' name='{"conf":{"exp-ovr":true}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
             </div></div>
+
+            <div class="dark thumb thumb-narrow"></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb thumb-narrow"></div>
+            <div class="dark thumb"></div>
+
+            <div class="dark thumb thumb-expandable"><div class="ad"><iframe src='iframes/push_expand.html' name='{"conf":{"exp-push":true}}' frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></div></div>
+            <div class="dark thumb"></div>
+            <div class="dark thumb"></div>
 
             <div class="dark thumb thumb-narrow"></div>
             <div class="dark thumb"></div>
