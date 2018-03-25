@@ -128,13 +128,9 @@ ul.menu li a:hover {
     background: #475c4d;
     opacity: 0.8;
     cursor: move;
-}
-.obstruction .center {
-    text-align: center;
-    color: white;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .p {
