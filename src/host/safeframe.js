@@ -202,6 +202,7 @@ export default class SafeFrame {
         this.rect.width = this.rect.right - this.rect.left;
         this.rect.height = this.rect.bottom - this.rect.top;
 
+        this.saved_zindex = this.node.style.zIndex;
         if (e.data.push) {
             // push expand
             // Save original size of the offsetParent node
@@ -214,6 +215,7 @@ export default class SafeFrame {
             this.node.style.position = 'absolute';
             this.setNodeRect(this.rect);
         }
+        this.node.style.zIndex = 1e6;
         this.status = Status.EXPANDED;
         this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
     }
@@ -241,6 +243,7 @@ export default class SafeFrame {
 
             this.rect = this.collapse_rect;
             this.node.style.position = 'initial';
+            this.node.style.zIndex = this.saved_zindex;
             this.setNodeRect(this.rect);
 
             this.status = Status.COLLAPSED;
