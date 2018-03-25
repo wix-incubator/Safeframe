@@ -25,6 +25,7 @@ main {
     display: block;
     height: 30px;
     width: 130px;
+    position: relative;
 }
 #deviantart-logo span {
     display: inline-block;
@@ -43,6 +44,15 @@ main {
     float: left;
     width: 109px;
     height: 30px;
+}
+#deviantart-logo .subtype {
+    font: 8pt Verdana, sans-serif;
+    letter-spacing: 0;
+    position: absolute;
+    top: 17px;
+    left: 67px;
+    z-index: 30;
+    color: #93AA9B;
 }
 
 .page {
