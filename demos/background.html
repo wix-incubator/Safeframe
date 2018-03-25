@@ -15,11 +15,20 @@
                 <span class="type"></span>
             </span>
             </a>
+            <ul class="menu">
+                <li><a href="./background.html" class="selected">background</a></li>
+                <li><a href="./visibility.html">visibility</a></li>
+                <li><a href="./cookies.html">cookies</a></li>
+            </ul>
         </header>
-        <div>
+        <div class="pp">
+        <p>This demo sets the same image as a background to each of the randomly positioned iframes, which then reposition their background images so that it aligns with other iframes, and appear as a single image.</p>
+        </div>
+        <div id="stage">
             <script type='text/javascript'>
-                var HEADER_HEIGHT = parseInt(document.defaultView.getComputedStyle(document.querySelector('header')).height);
-                var WIN_HEIGHT = window.innerHeight - HEADER_HEIGHT;
+                var MIN_LEFT = 0;
+                var MIN_TOP = document.getElementById('stage').offsetTop;
+                var WIN_HEIGHT = window.innerHeight - MIN_TOP;
                 var WIN_WIDTH = window.innerWidth;
                 var MIN_SIZE = Math.min(200, WIN_WIDTH, WIN_HEIGHT) - 2;
                 var MAX_SIZE = Math.min(500, WIN_WIDTH, WIN_HEIGHT) - 2;
@@ -44,8 +53,8 @@
                 while (numFrames-- > 0) {
                     var w = Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE;
                     var h = Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE;
-                    var x = Math.random() * Math.max(0, WIN_WIDTH - w);
-                    var y = Math.random() * Math.max(0, WIN_HEIGHT - h) + HEADER_HEIGHT;
+                    var x = Math.random() * Math.max(MIN_LEFT, WIN_WIDTH - w) + MIN_LEFT;
+                    var y = Math.random() * Math.max(MIN_TOP, WIN_HEIGHT - h) + MIN_TOP;
                     createIframe(x, y, w, h);
                 }
             </script>

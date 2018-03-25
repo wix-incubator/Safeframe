@@ -12,6 +12,9 @@ header {
     height: 50px;
     padding: 10px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 main {
     width: 960px;
@@ -45,6 +48,34 @@ main {
 .page {
     overflow: hidden;
 }
+ul.menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin-left: 50px;
+}
+ul.menu li {
+    display: inline-block;
+    margin-right: 15px;
+}
+ul.menu li a,
+ul.menu li a:hover,
+ul.menu li a:visited {
+    text-decoration: none;
+    background-image: none;
+    display: block;
+    text-transform: uppercase;
+    color: #adc0b3;
+    text-decoration: none;
+    font-size: 12px;
+}
+ul.menu li a.selected,
+ul.menu li a:hover {
+    color: #fff;
+}
+
 .thumb {
     float: left;
     width: 300px;
@@ -94,4 +125,14 @@ main {
     position: relative;
     top: 50%;
     transform: translateY(-50%); 
+}
+
+.p {
+    padding: 4px;
+}
+.pp {
+    padding: 8px;
+}
+.rel {
+    position: relative;
 }
