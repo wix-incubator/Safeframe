@@ -120,16 +120,20 @@ export default class SafeFrame {
 
     getNodeStyles(node, attrs) {
         let styles = {};
-        attrs.forEach(function(s) {
-            styles[s] = node.style[s];
-        });
+        if (attrs && attrs.length) {
+            attrs.forEach(function(s) {
+                styles[s] = node.style[s];
+            });
+        }
         return styles;
     }
 
     setNodeStyles(node, styles) {
-        for (let s in styles) {
-            if (styles.hasOwnProperty(s)) {
-                node.style[s] = styles[s];
+        if (styles && node && node.style) {
+            for (let s in styles) {
+                if (styles.hasOwnProperty(s)) {
+                    node.style[s] = styles[s];
+                }
             }
         }
     }
