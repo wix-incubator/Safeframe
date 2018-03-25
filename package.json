@@ -7,7 +7,7 @@
     "genkey": "node bin/generate-key.js",
     "clean": "rimraf dist/*",
     "prebuild": "npm run clean -s",
-    "build": "npm run build:prod",
+    "build": "npm run genkey && npm run build:prod",
     "build:dev": "webpack -d --config webpack.config.dev.js",
     "build:prod": "webpack -p --config webpack.config.prod.js",
     "build:tests": "webpack -p --config webpack.config.tests.js",
@@ -18,7 +18,7 @@
     "version": "npm run build && git add -u",
     "push": "git push && git push --tags",
     "test": "npm run -s build:tests && mocha --require jsdom-global/register test/tests.bundle.js -u bdd -R spec",
-    "start": "npm run dev"
+    "start": "npm run genkey && npm run dev"
   },
   "repository": "https://github.com/DeviantArt/SafeFrame",
   "keywords": [
