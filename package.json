@@ -48,7 +48,7 @@
     "mocha-jsdom": "^1.1.0",
     "mocha-webpack": "^0.7.0",
     "open": "0.0.5",
-    "parallelshell": "^2.0.0",
+    "parallelshell": "^3.0.0",
     "preprocess-loader": "^0.2.0",
     "randomstring": "^1.1.5",
     "rimraf": "latest",
