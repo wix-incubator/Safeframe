@@ -33,6 +33,10 @@ Files and Directories
   * `/demos` This folder contains various demo pages, that load the [demos/visibility.html](demos/visibility.html) in an iframe and demonstrate various features and functionality.
   * `/test` This folder contains the automated tests files.
 
+Security
+========
+This implementation uses a simple secret key to pass configuration between the host and the guest. It was never meant to provide a buletproof cryptographic security, but it is a handy feature to have. The key is kept in the `secret.key` file, which is regenerated on every build. To prevent it from being committed to the repo, please tell your git config to ignore any working directory changes for this file and always use the index version:
+`git update-index --skip-worktree secret.key`
 
 LICENCE
 =======
