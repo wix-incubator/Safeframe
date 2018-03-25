@@ -202,11 +202,12 @@ export default class SafeFrame {
         this.rect.width = this.rect.right - this.rect.left;
         this.rect.height = this.rect.bottom - this.rect.top;
 
-        this.saved_zindex = this.node.style.zIndex;
+        var positionalStyles = ['width', 'height', 'top', 'left', 'right', 'bottom', 'position'];
+        this.node_styles = this.getNodeStyles(this.node, positionalStyles);
         if (e.data.push) {
             // push expand
             // Save original size of the offsetParent node
-            this.offset_parent_saved_styles = this.getNodeStyles(this.offset_parent, ['width', 'height']);
+            this.offset_parent_styles = this.getNodeStyles(this.offset_parent, positionalStyles);
             this.setNodeStyles(this.offset_parent, {width: Math.max(parseInt(this.rect.width,10), this.offset_parent.offsetWidth)+'px', height: Math.max(parseInt(this.rect.height), this.offset_parent.offsetHeight)+'px'});
             this.setNodeRect(this.rect);
         } else {
@@ -236,15 +237,16 @@ export default class SafeFrame {
             this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
 
             // If we have saved parentOffset restore it
-            if (this.offset_parent && this.offset_parent_saved_styles) {
-                this.setNodeStyles(this.offset_parent, this.offset_parent_saved_styles);
-                this.offset_parent_saved_styles = false;
+            if (this.offset_parent && this.offset_parent_styles) {
+                this.setNodeStyles(this.offset_paren, this.offset_parent_styles);
             }
 
             this.rect = this.collapse_rect;
-            this.node.style.position = 'initial';
-            this.node.style.zIndex = this.saved_zindex;
+
             this.setNodeRect(this.rect);
+            this.setNodeStyles(this.node_styles);
+
+            this.node_styles = this.offset_parent_styles = undefined;
 
             this.status = Status.COLLAPSED;
             this.messages.send('geom.update', {g: this.getGeomInfo(), status: this.status});
