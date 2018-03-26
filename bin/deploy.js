@@ -21,7 +21,7 @@ function copyFile(source, dest) {
 }
 
 var projectDir = path.join(__dirname, '..');
-var webDir = process.env.DATRUNK;
+var webDir = process.env.DA_WEB_ROOT;
 ['deviantart-safeframes-host.min.js', 'deviantart-safeframes-guest.min.js'].forEach(function(filename) {
     var src = path.join(projectDir, 'dist', filename);
     var dest = path.join(webDir, 'styles', 'jms', 'thirdparty', 'lib', 'deviantart-safeframes', filename.split('-').pop());

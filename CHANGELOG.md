@@ -1,12 +1,12 @@
 # CHANGELOG 
 
 ## 0.4.0
-Change: Update the visibility demo so that the obstruction element is detected correctly
-Security: Regenrate secret.key on every build, and do not commit it to the repo
-Added: CHANGELOG.md
-Change: Updated demos
-Feature: push-expand
-Change: Updated paralleleshell to v3, to fix https://github.com/darkguy2008/parallelshell/issues/57
+ - Change: Update the visibility demo so that the obstruction element is detected correctly
+ - Security: Regenrate secret.key on every build, and do not commit it to the repo
+ - Added: CHANGELOG.md
+ - Change: Updated demos
+ - Feature: push-expand
+ - Change: Updated paralleleshell to v3, to fix https://github.com/darkguy2008/parallelshell/issues/57
 
 ## v0.3.0
  - Fixed: findIndex is not supported by IE10
