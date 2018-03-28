@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>DeviantArt SafeFrame Guest</title>
+        <style type='text/css'>
+            body {
+                background: white;
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <span>inViewPercentage:</span> <span id="visibility"></span>
+        </div>
+        <div>
+            This iframe will auto-expand when 100% visible, and then try to collapse after 3s.
+        </div>
+
+        <script type='text/javascript' src='../../dist/deviantart-safeframes-guest.js'></script>
+        <script type='text/javascript'>
+            // Register this ad unit with the SafeFrame manager on the host
+            $sf.ext.register(300, 250, function(e) {
+                document.getElementById('visibility').innerHTML = $sf.ext.inViewPercentage() + "%";
+                if ($sf.ext.status() == 'collapsed') {
+                    if ($sf.ext.inViewPercentage() == 100) {
+                        var exp = $sf.ext.geom().exp;
+                        // Expand 200px to the right and 100px to the bottom
+                        $sf.ext.expand(exp);
+                        // Collapse back to original size after 3s
+                        setTimeout(function() {
+                            $sf.ext.collapse();
+                        }, 3000);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

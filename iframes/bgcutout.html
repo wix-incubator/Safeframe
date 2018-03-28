@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>DeviantArt SafeFrame Guest</title>
+        <style type='text/css'>
+            body {
+                background: url('../images/logo.png');
+            }
+        </style>
+    </head>
+    <body>
+        <script type='text/javascript' src='../../dist/deviantart-safeframes-guest.js'></script>
+        <script type='text/javascript'>
+            // Register this ad unit with the SafeFrame manager on the host
+            var initialized = false;
+            $sf.ext.register(window.innerWidth, window.innerHeight, function(e) {
+                if (e.data.g && !initialized) {
+                    initialized = true;
+                    var style = document.body.style;
+                    var g = e.data.g;
+                    style.backgroundSize = g.win.w + 'px auto';
+                    style.backgroundPosition = [-g.self.l, -g.self.t].map(function(v) { return v + 'px' }).join(' ');
+                }
+            });
+        </script>
+    </body>
+</html>
